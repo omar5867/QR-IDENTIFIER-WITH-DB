@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>QR Seguro</title></head>
+<body>
+  <h1>Generar QR de un solo uso</h1>
+  <form id="qrForm">
+    <input id="name"     placeholder="Nombre" required><br>
+    <input id="email"    type="email" placeholder="Email" required><br>
+    <input id="password" type="password" placeholder="Contraseña" required><br>
+    <button type="submit">Generar y Enviar</button>
+  </form>
+  <div id="qrResult"></div>
+  <script src="app.js"></script>
+  <button onclick="location.href='/verify'" style="margin-top: 10px;">Ir a Validar QR</button>
+</body>
+</html>

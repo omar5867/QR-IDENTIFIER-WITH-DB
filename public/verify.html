@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<html><head><title>Verificar QR</title></head>
+<body>
+  <h1>Verificación de QR</h1>
+  <div id="result"></div>
+  <script src="verify.js"></script>
+  <h2>Escanear QR</h2>
+<div id="reader" style="width: 300px;"></div>
+<div id="status"></div>
+
+<script>
+  const qrRegion = document.getElementById("reader");
+  const status = document.getElementById("status");
+
+  function onScanSuccess(decodedText, decodedResult) {
+    // Stop scanning once a QR is detected
+    html5QrcodeScanner.clear().then(() => {
+      window.location.href = decodedText; // Redirige al enlace en el QR
+    }).catch(err => {
+      status.textContent = "Error al detener el escáner: " + err;
+    });
+  }
+
+  const html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", 
+    { fps: 10, qrbox: 250 },
+    false
+  );
+  
+  html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+</body></html>

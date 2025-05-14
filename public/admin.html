@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><title>Panel Admin</title></head>
+<body>
+  <h1>Confirmar Acceso</h1>
+  <div id="user"></div>
+  <button onclick="confirm('aceptado')">Aceptar</button>
+  <button onclick="confirm('rechazado')">Rechazar</button>
+  <script src="admin.js"></script>
+</body></html>
+<script>
+  const user = document.getElementById('user');
+  const params = new URLSearchParams(window.location.search);
+  const userId = params.get('userId');
+  const userName = params.get('userName');
+
+  if (userId && userName) {
+    user.innerHTML = `Usuario: ${userName} (${userId})`;
+  } else {
+    user.innerHTML = 'No se ha proporcionado información del usuario.';
+  }
+
+  function confirm(action) {
+    window.opener.postMessage({ action, userId, userName }, '*');
+    window.close();
+  }
