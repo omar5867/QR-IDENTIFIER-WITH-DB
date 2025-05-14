@@ -1,22 +1,27 @@
-const nameEl = document.getElementById('name');
-const emailEl = document.getElementById('email');
-const passwordEl = document.getElementById('password');
-const qrResult = document.getElementById('qrResult');
-
-
-document.getElementById('qrForm').addEventListener('submit', async e => {
+document.getElementById('inscriptionForm').addEventListener('submit', async e => {
   e.preventDefault();
-  const name = nameEl.value.trim(),
-        email= emailEl.value.trim(),
-        password = passwordEl.value;
-  const res = await fetch('/api/generate-qr',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ name, email, password })
+  const form = e.target;
+
+  const data = {
+    promotion: form.promotion.value,
+    email: form.email.value.trim(),
+    fullName: form.fullName.value.trim(),
+    gender: form.gender.value,
+    documentType: form.documentType.value.trim(),
+    documentNumber: form.documentNumber.value.trim(),
+    guestCount: parseInt(form.guestCount.value)
+  };
+
+  const res = await fetch('/api/register-inscription', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
   });
-  const data = await res.json();
+
+  const json = await res.json();
   if (res.ok) {
-    qrResult.innerHTML = `<img src="${data.qrUrl}" alt="QR">`;
-    alert('QR enviado por correo');
-  } else alert(data.message);
+    alert(`Inscripción exitosa. Tu número de entrada es: ${json.entryNumber}`);
+  } else {
+    alert(json.message || 'Error al registrar');
+  }
 });
