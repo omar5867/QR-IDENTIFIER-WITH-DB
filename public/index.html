@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><title>QR Seguro</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>QR Seguro</title>
+</head>
 <body>
   <h1>Generar QR de un solo uso</h1>
   <form id="inscriptionForm">
-  <input type="number" placeholder="Promoción (80-99)" name="promotion" required>
-  <input type="email" placeholder="Correo" name="email" required>
-  <input type="text" placeholder="Nombre completo" name="fullName" required>
+    <input type="email" placeholder="Correo del representante" name="email" required>
+    <input type="number" placeholder="Cantidad de invitados" name="guestCount" id="guestCountInput" min="1" required>
+    <div id="guestsContainer"></div>
+    <button type="submit">Registrar</button>
+  </form>
 
-  <select name="gender" required>
-    <option value="">Género</option>
-    <option value="M">Masculino</option>
-    <option value="F">Femenino</option>
-    <option value="Otro">Otro</option>
-  </select>
-  <select name="documentType" required>
-    <option value="">Elegir documento</option>
-    <option value="DNI">Masculino</option>
-    <option value="CE">Femenino</option>
-    <option value="Pasaporte">Otro</option>
-  </select>
-  <input type="text" placeholder="Número de documento" name="documentNumber" required>
-  <input type="number" placeholder="Cantidad de invitados" name="guestCount" required>
-
-  <button type="submit">Registrar</button>
-</form>
-
-<div id="qrResult"></div>
+  <div id="qrResult"></div>
   <script src="app.js"></script>
+
   <button onclick="location.href='/verify'" style="margin-top: 10px;">Ir a Validar QR</button>
 </body>
 </html>

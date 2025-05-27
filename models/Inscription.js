@@ -5,13 +5,13 @@ const guestSchema = new mongoose.Schema({
   fullName: String,
   gender: String,
   docType: String,
-  docNumber: String
+  docNumber: String,
+  entryNumber: Number // ← nuevo campo único por invitado
 });
 
 const inscriptionSchema = new mongoose.Schema({
   email: { type: String, required: true },
   guests: [guestSchema],
-  entryNumber: { type: Number, required: true, unique: true },
   guestCount: { type: Number, required: true },
   totalAmount: { type: Number, required: true },
   token: { type: String, required: true },
