@@ -117,7 +117,7 @@ app.get('/verify', (req, res) => {
 });
 
 // Mostrar detalles del token (sin consumir)
-app.get('/verify/:token', async (req, res) => {
+app.get('/verificar/:token', async (req, res) => {
   const { token } = req.params;
   const doc = await Inscription.findOne({ token });
 
